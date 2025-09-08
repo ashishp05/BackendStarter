@@ -1,0 +1,52 @@
+<html lang="en"></html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; padding: 0;
+      background-color: #f7f7f7; } .container { width: 80%; max-width: 600px;
+      margin: 20px auto; padding: 20px; background-color: #fff; border-radius:
+      8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); } .header { text-align:
+      center; margin-bottom: 20px; } .content { padding: 20px; }
+      .button-container { display: flex; justify-content: center; margin: 20px
+      0; } .reset-password-button { background-color: #142897; border: none;
+      color: #fff; padding: 10px 20px; font-size: 16px; font-weight: bold;
+      text-transform: uppercase; border-radius: 5px; cursor: pointer;
+      text-decoration: none; } .reset-password-button:hover { background-color:
+      #103ea1; } .Divider { height: 2px; background-color: #f1f1f1; margin: 20px
+      0; } .signature { font-weight: bold; } .font_italic { font-style: italic
+      !important; } .keyword { text-decoration: underline; }
+
+      .logo {
+        width: 150px;
+        height: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="{{logoUrl}}"
+          alt="PhoneAwayBox Logo"
+          class="logo"
+        />
+      </div>
+      <div class="content">
+         <p>Hello,</p>
+         <p>Your account has been successfully created with below details:</p>
+         <p>Email Id: {{email}}<br/>
+            Class: {{grade}}
+         </p>
+         <p>You can download and start using the application by clicking the link below:</p>
+         <p><a href={{androidLink}}>Download Android App</a> OR <a href={{iosLink}}>Download iOS App</a></p>
+        <div class="Divider"></div>
+        <p class="signature">Thanks,</p>
+        <p class="signature">PhoneAwayBox Team</p>
+      </div>
+    </div>
+  </body>
+
+</html>

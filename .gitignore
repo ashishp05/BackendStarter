@@ -1,0 +1,8 @@
+#Ignoring evn file
+config/dev.env
+
+#Ignoring node_modules
+node_modules
+
+#Ignoring upload folder
+uploads
