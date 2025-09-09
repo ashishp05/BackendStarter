@@ -72,7 +72,7 @@ const adminSchema = new mongoose.Schema(
             default: Date.now
         },
     },
-    {
+     {
         timestamps: false,
         toJSON: {
             transform: function (doc, ret) {

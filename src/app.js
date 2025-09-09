@@ -48,59 +48,5 @@ DBController.initConnection(async () => {
     httpServer.listen(process.env.PORT, async function () {
         console.log("Server is running on", Util.getBaseURL());
 
-        //This is used for to create logs entries of every students
-        //Midnight: 00:10 AM
-        cron.schedule('10 0 * * *', async () => {
-            await CronController.logsCreator()
-        }, {
-            scheduled: true,
-            timezone: "Europe/Dublin"
-        })
-
-        //This is used for to find average hours of every students
-        //And schools
-        //Midnight: 11:50 PM
-        cron.schedule('50 23 * * *', async () => {
-            await CronController.averageCreator()
-        }, {
-            scheduled: true,
-            timezone: "Europe/Dublin"
-        })
-
-        //This cron will track student is not came or still in school after buffer end over
-        //Every 5 min
-        cron.schedule('*/5 * * * *', async () => {
-            await CronController.smsSender()
-        }, {
-            scheduled: true,
-            timezone: "Europe/Dublin"
-        })
-
-        //This cron will remove all previous month notifications
-        //First day of every Month
-        cron.schedule('0 0 1 * *', async () => {
-            await CronController.notificationRemover()
-        }, {
-            scheduled: true,
-            timezone: "Europe/Dublin"
-        })
-
-        //This cron will sent an email to school admin
-        //Every 10 min
-        cron.schedule('*/10 * * * *', async () => {
-            await CronController.emailSender()
-        }, {
-            scheduled: true,
-            timezone: "Europe/Dublin"
-        })
-
-        //This cron will sent an report for students checked out
-        //Every hour
-        cron.schedule('0 * * * *', async () => {
-            await CronController.checkedOutReportSender()
-        }, {
-            scheduled: true,
-            timezone: "Europe/Dublin"
-        })
     });
 });

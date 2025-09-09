@@ -6,6 +6,14 @@ const UserTypes = (function () {
     UserTypes.StaffMember = 4;
     return UserTypes;
 })();
+const OrderStatus = (function () {
+    function OrderStatus() { }
+    OrderStatus.Pending = 1;
+    OrderStatus.Success = 2;
+    OrderStatus.Failed = 3;
+    OrderStatus.Canceled = 4;
+    return OrderStatus;
+})();
 
 const Platforms = (function () {
     function Platforms() { }
@@ -56,6 +64,8 @@ const ValidationMsgs = (function () {
     ValidationMsgs.Question = "Question required!";
     ValidationMsgs.Answer = "Answer required!";
     ValidationMsgs.DataEmpty = "Data is empty";
+    ValidationMsgs.DescEmpty = "Description is empty";
+    ValidationMsgs.TagEmpty = "Tag is empty";
     ValidationMsgs.SomethingWrong = "Something Went Wrong!";
     ValidationMsgs.DuplicateData = "Duplicate Data Insert Error";
     ValidationMsgs.InsertError = "Insert Error";
@@ -127,6 +137,7 @@ const ValidationMsgs = (function () {
     ValidationMsgs.InvitationsEmailSent = "Invitation is already sent to all the students"
     ValidationMsgs.DuplicateEmailStaffMember = "Email id is already associated with another staff member, please enter different email"
     ValidationMsgs.DuplicateEmailStaffInAnotherSchool = "Email id is already associated with another school's staff member, please enter different email"
+    ValidationMsgs.ProductNotFound ="Product Not Found."
     return ValidationMsgs;
 })();
 
@@ -144,20 +155,9 @@ const TableNames = (function () {
     function TableNames() { }
     TableNames.Admin = "admins";
     TableNames.Faq = "faqs";
-    TableNames.Grade = "grades";
-    TableNames.School = "schools";
-    TableNames.Streak = "streaks";
-    TableNames.Logs = "logs";
-    TableNames.Student = "students";
-    TableNames.AcademicYear = "academics";
-    TableNames.Holidays = "holidays";
-    TableNames.Leave = "leaves";
     TableNames.DefaultConfiguration = "default-configurations";
-    TableNames.Class = "classes";
-    TableNames.SchoolTiming = "school-timings";
-    TableNames.Counter = 'counter'
-    TableNames.Notification = 'notifications'
-    TableNames.StaffMembers = 'staff-members'
+    TableNames.Product = "products";
+    TableNames.Order = 'orders';
     return TableNames;
 })();
 
@@ -185,19 +185,14 @@ const TableFields = (function () {
     TableFields.question = "question";
     TableFields.answer = "answer";
     TableFields.deletedAt = "deletedAt";
-    TableFields.grade = "grade";
     TableFields.status = "status";
     TableFields.deleted = "deleted";
     TableFields._deletedAt = "_deletedAt";
-    TableFields.regCompleted = "regCompleted";
     TableFields.adminName = "adminName";
     TableFields.adminPhone = "adminPhone";
     TableFields.adminPhoneCountry = "adminPhoneCountry";
     TableFields.boxCount = "boxCount";
     TableFields.status = "status";
-    TableFields.grades = "grades";
-    TableFields.startTime = "startTime";
-    TableFields.endTime = "endTime";
     TableFields.addedByAdmin = "addedByAdmin";
     TableFields.createdAt = "createdAt";
     TableFields.updatedAt = "updatedAt";
@@ -206,55 +201,14 @@ const TableFields = (function () {
     TableFields.thumbnail = "thumbnail";
     TableFields.reference = "reference";
     TableFields.authType = "authType";
-    TableFields.totalStudents = "totalStudents";
-    TableFields.avgPhoneAwayHours = "avgPhoneAwayHours";
     TableFields.address = "address";
     TableFields.firstName = "firstName";
     TableFields.lastName = "lastName";
     TableFields.fullName = "fullName";
-    TableFields.dob = "dob";
-    TableFields.regNumber = "regNumber";
-    TableFields.associatedSchool = "associatedSchool";
-    TableFields.nfcCode = "nfcCode";
-    TableFields.gradeReference = "gradeReference";
-    TableFields.gradeName = "gradeName";
-    TableFields.parents = "parents";
-    TableFields.year = "year";
-    TableFields.academic = "academic";
     TableFields.file = "file";
-    TableFields.streak = "streak";
-    TableFields.pinId = "pinId";
-    TableFields.phoneVerified = "phoneVerified";
-    TableFields.school = "school";
-    TableFields.date = "date";
-    TableFields.calenderDayStatus = "calenderDayStatus";
-    TableFields.validInOutPairs = "validInOutPairs";
-    TableFields.timeEntries = "timeEntries";
-    TableFields.time = "time";
-    TableFields.inTime = "inTime";
-    TableFields.outTime = "outTime";
-    TableFields.totalDuration = "totalDuration";
-    TableFields.punchStatus = "punchStatus";
-    TableFields.currentPunchStatus = "currentPunchStatus";
-    TableFields.startDate = "startDate";
-    TableFields.endDate = "endDate";
-    TableFields.student = "student";
-    TableFields.studentInfo = "studentInfo";
-    TableFields.shiftStartTime = "shiftStartTime";
-    TableFields.shiftEndTime = "shiftEndTime";
-    TableFields.isArrivedLate = "isArrivedLate";
     TableFields.deviceId = "deviceId";
-    TableFields.assignedBox = "assignedBox";
-    TableFields.totalWorkingDays = "totalWorkingDays";
-    TableFields.effectivePhoneAwayHours = "effectivePhoneAwayHours";
-    TableFields.leaveDuration = "leaveDuration";
     TableFields.message = "message";
     TableFields.leaveId = "leaveId";
-    TableFields.isStudent = "isStudent";
-    TableFields.firstClockIn = "firstClockIn";
-    TableFields.lastClockOut = "lastClockOut";
-    TableFields.bufferStartTime = "bufferStartTime";
-    TableFields.bufferEndTime = "bufferEndTime";
     TableFields.iOSVersion = "iOSVersion";
     TableFields.androidVersion = "androidVersion";
     TableFields.iOSUnderMaintenance = "iOSUnderMaintenance";
@@ -263,30 +217,10 @@ const TableFields = (function () {
     TableFields.androidForceUpdate = "androidForceUpdate";
     TableFields.type = "type";
     TableFields.emailOTP = "emailOTP";
-    TableFields.lockerNumber = "lockerNumber";
-    TableFields.codeNumber = "codeNumber";
-    TableFields.day = "day";
-    TableFields.timing = "timing";
-    TableFields.className = "className";
-    TableFields.avgPhoneAwayHoursInHHMM = "avgPhoneAwayHoursInHHMM";
-    TableFields.effectivePhoneAwayHoursInHHMM = "effectivePhoneAwayHoursInHHMM";
-    TableFields.value = "value";
     TableFields.refKey = "refKey";
-    TableFields.studentDeleted = "studentDeleted";
-    TableFields.parentsPhoneOTP = "parentsPhoneOTP";
-    TableFields.isSentShiftStart = "isSentShiftStart";
-    TableFields.isSentShiftEnd = "isSentShiftEnd";
     TableFields.title = "title";
     TableFields.metadata = "metadata";
-    TableFields.unreadItems = "unreadItems";
-    TableFields.unreadCounts = "unreadCounts";
-    TableFields.notClockedInEmailSent = "notClockedInEmailSent";
-    TableFields.clockInGrace = "clockInGrace";
     TableFields.messageType = "messageType";
-    TableFields.enableSmsToParents = "enableSmsToParents";
-    TableFields.regMailSent = "regMailSent";
-    TableFields.clockedOutReportEmailSent = "clockedOutReportEmailSent";
-    TableFields.refreshTime = "refreshTime";
     TableFields.accuracy = "accuracy";
     TableFields.distance = "distance";
     TableFields.lat = "lat";
@@ -294,6 +228,24 @@ const TableFields = (function () {
     TableFields.duration = "duration";
     TableFields.androidSpeed = "androidSpeed";
     TableFields.iosSpeed = "iosSpeed";
+    TableFields.tag = 'tag';
+    TableFields.description = 'description';
+    TableFields.price = 'price';
+    TableFields.images = 'images';
+    TableFields.productDetails = 'productDetails';
+    TableFields.brand = 'brand';
+    TableFields.processor = 'processor';
+    TableFields.RAM = 'RAM';
+    TableFields.storage = 'storage';
+    TableFields.display = 'display';
+    TableFields.graphics = 'graphics';
+    TableFields.os = 'os';
+    TableFields.connectionTypes = 'connectionTypes';
+    TableFields.weight = 'weight';
+    TableFields.productId = 'productId';
+    TableFields.qty = 'qty';
+    TableFields.totalQty = 'totalQty';
+    TableFields.totalPrice = 'totalPrice'
 
     //For Import Student from Excel
     TableFields.first_name = "First Name";
@@ -477,5 +429,6 @@ module.exports = {
     CounterSchemaType,
     NotificationType,
     ReasonType,
-    Accuracy
+    Accuracy,
+    OrderStatus
 };
