@@ -7,6 +7,7 @@ const app = express();
 const Util = require("./utils/util");
 const CronController = require('./schedulers/CronController')
 const fs = require("fs");
+require("dotenv").config({ path: "./config/dev.env" });
 
 app.use(cors());
 app.use(
