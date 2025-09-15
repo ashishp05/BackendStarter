@@ -4,10 +4,10 @@
   "description": "backend",
   "main": "src/app.js",
   "scripts": {
-    "start": "env-cmd -f ./config/dev.env nodemon src/app.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "build",
-    "dev": "node app.js"
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "",
