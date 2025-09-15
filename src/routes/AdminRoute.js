@@ -6,7 +6,6 @@ const CmsController = require("../controllers/admin/CmsController");
 const FaqController = require("../controllers/admin/FaqController");
 const DefaultController = require("../controllers/admin/DefaultController");
 const ProductController = require("../controllers/product/ProductController");
-const ImageController = require("../controllers/product/ImageController");
 const router = API.configRoute("/admin")
 
   //AUTH
@@ -152,19 +151,33 @@ const router = API.configRoute("/admin")
    * Product CURD
    * -------------------------------------
    */
-  .addPath("/upload/images")
-  .asPOST(ImageController.imageUploadToCloudinary)
-  .userMiddlewares(ImageHandler.multipleImage([TableFields.images]))
-  .build()
-
+  
   .addPath("/product/add")
-  .asPOST(ProductController.addProduct)
-  //  .useAdminAuth()
+  .asPOST(ProductController.createProductWithImages)
+  .userMiddlewares(ImageHandler.multipleImage([TableFields.images]))
+  .useAdminAuth()
   .build()
  
   .addPath(`/product/edit/:${TableFields.productId}`)
   .asUPDATE(ProductController.editProduct)
+  .useAdminAuth()
   .build()
+
+  .addPath("/product/list")
+  .asGET(ProductController.listOfProducts)
+  .useAdminAuth()
+  .build()
+
+  .addPath(`/product/info/:${TableFields.productId}`)
+  .asGET(ProductController.getProductInfo)
+  .useAdminAuth()
+  .build()
+  
+  .addPath(`/product/delete/:${TableFields.productId}`)
+  .asDELETE(ProductController.deleteProdut)
+  .useAdminAuth()
+  .build()
+
   .getRouter();
 
 module.exports = router;

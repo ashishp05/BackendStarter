@@ -13,7 +13,7 @@ const AdminService = require("../db/services/AdminService");
 
 const auth = async (req, res, next) => {
     try {
-        const headerToken = req.header("Authorization").replace("Bearer ", "");
+        const headerToken = req.header("Authorization")?.replace("Bearer ", "");
         const decoded = jwt.verify(headerToken, process.env.JWT_ADMIN_PK);
         const admin = await AdminService.getUserByIdAndToken(
             decoded[TableFields.ID],

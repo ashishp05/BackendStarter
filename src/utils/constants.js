@@ -406,7 +406,19 @@ const Accuracy = (function () {
     return type;
 })()
 
+    const ProductTag = (function () {
+        function  tag() {} 
+        tag.Laptop = 1;
+        tag.computer = 2 ;
+        tag.tablet =3 ;
+        tag.apple = 4;
+        tag.server = 5;
+        tag.other = 6 ;
+        return tag;
+    })()
+
 module.exports = {
+    ProductTag,
     ValidationMsgs,
     TableNames,
     TableFields,

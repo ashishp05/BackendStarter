@@ -1,5 +1,5 @@
 const { default: mongoose } = require("mongoose");
-const { TableFields, TableNames } = require("../../utils/constants");
+const { TableFields, TableNames, ProductTag } = require("../../utils/constants");
 
 const productSchema = new mongoose.Schema(
   {
@@ -8,7 +8,8 @@ const productSchema = new mongoose.Schema(
       trim: true,
     },
     [TableFields.tag]: {
-      type: String,
+      type: Number,
+      enum : Object.values(ProductTag),
       trim: true,
     },
     [TableFields.description]: {

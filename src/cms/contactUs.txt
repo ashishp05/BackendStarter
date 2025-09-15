@@ -1,1 +1,2 @@
 <H1> CONATCT US PAGE</H1> 
+<p>I am writing here my privacy policies </p>

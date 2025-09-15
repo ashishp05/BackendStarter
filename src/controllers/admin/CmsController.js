@@ -6,7 +6,7 @@ exports.getPrivacyPolicy = async function (req) {
     var filePath = path.join(
         __dirname,
         "../../",
-        "storage/cms",
+        "/cms",
         "privacyPolicy.txt"
     );
 

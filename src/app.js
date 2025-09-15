@@ -10,7 +10,7 @@ const fs = require("fs");
 
 app.use(cors());
 app.use(
-    express.urlencoded({ extended: false, limit: "5gb", parameterLimit: 50000 })
+    express.urlencoded({ extended: true, limit: "5gb", parameterLimit: 50000 })
 );
 app.use(
     express.json({
@@ -18,6 +18,7 @@ app.use(
     })
 );
     app.use(require("./routes/AdminRoute"));
+    app.use(require("./routes/UserRoute"))
 
 app.use('/uploads', express.static(path.join(__dirname, '../uploads'))); //to show image
 app.use('/static_files', express.static(path.join(__dirname, '../static_files'))); //to show default static files
