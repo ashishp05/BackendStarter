@@ -78,7 +78,7 @@ const ImageHandler = class {
                 if (err) {
                     res.status(ApiResponseCode.ClientOrServerError).send(Util.getErrorMessage(err));
                 } else {
-                    let hasError = false;
+                    let hasError = false; 
                     req.files.forEach((element) => {
                         if (isValidImageFile(element.originalname) == false) {
                             hasError = true;

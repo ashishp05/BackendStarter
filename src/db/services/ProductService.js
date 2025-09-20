@@ -55,6 +55,8 @@ class ProductService {
       let needCount = Util.parseBoolean(filter.needCount);
       let startDate = filter.startDate;
       let endDate = filter.endDate;
+      let minPrice = filter.minPrice ;
+      let maxPrice = filter.maxPrice ;
       let tag = filter.tag;
 
       let searchQuery = {};
@@ -86,7 +88,20 @@ class ProductService {
           $gte: startDate,
           $lte: endDate,
         };
-      }
+      } 
+      console.log(minPrice , maxPrice)
+
+     if (minPrice && maxPrice) {
+  const startPrice = parseInt(minPrice);
+  const endPrice = parseInt(maxPrice);
+
+  searchQuery.$expr = {
+    $and: [
+      { $gte: [{ $toDouble: "$price" }, startPrice] },
+      { $lte: [{ $toDouble: "$price" }, endPrice] },
+    ],
+  };
+}
       if (tag) {
         tag = parseInt(tag);
   

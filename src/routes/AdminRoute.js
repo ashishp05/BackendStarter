@@ -104,48 +104,7 @@ const router = API.configRoute("/admin")
   .useAdminAuth()
   .build()
 
-  /**
-   * -------------------------------------
-   * ClockOut Reasons Route
-   * -------------------------------------
-   */
-  .addPath("/seed/clock-out-reason")
-  .asPOST(DefaultController.seedClockOutReasons)
-  .build()
-
-  .addPath("/add/clock-out-reason")
-  .asPOST(DefaultController.addClockedOutReason)
-  .build()
-
-  .addPath("/clock-out-reason")
-  .asGET(DefaultController.getClockOutReasons)
-  .build()
-
-  .addPath(`/clock-out-reason/:${TableFields.ID}`)
-  .asUPDATE(DefaultController.updateClockOutReasons)
-  .useAdminAuth()
-  .build()
-
-  .addPath(`/clock-out-reason/:${TableFields.ID}`)
-  .asDELETE(DefaultController.deleteClockOutReasons)
-  .useAdminAuth()
-  .build()
-
-  /**
-   * -------------------------------------
-   * Device Speed settings
-   * -------------------------------------
-   */
-  .addPath("/device-speed-movement")
-  .asUPDATE(DefaultController.updateDeviceMovement)
-  .useAdminAuth()
-  .build()
-
-  .addPath("/device-speed-movement")
-  .asGET(DefaultController.getDeviceMovement)
-  .useAdminAuth()
-  .build()
-
+  
   /**
    * -------------------------------------
    * Product CURD

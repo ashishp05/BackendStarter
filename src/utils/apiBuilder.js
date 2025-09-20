@@ -59,7 +59,6 @@ const Builder = class {
         duplicateErrorHandler,
         middlewaresList = [],
         useAdminAuth = false,
-        useSchoolAuth = false,
         useStudentAuth = false,
         useAppSettingsAuth = false,
         
@@ -106,7 +105,6 @@ const Builder = class {
                 useAuthMiddleware,
                 duplicateErrorHandler,
                 middlewaresList,
-                false,
                 false,
                 false,
                 true
@@ -156,7 +154,6 @@ const Builder = class {
                 duplicateErrorHandler,
                 middlewaresList,
                 useAdminAuth,
-                useSchoolAuth,
                 useStudentAuth,
                 useAppSettingsAuth
             );

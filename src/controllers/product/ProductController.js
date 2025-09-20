@@ -21,8 +21,9 @@ exports.addProduct = async (req) => {
 exports.createProductWithImages = async (req) => {
     try {
         const { files, body } = req;
+        console.log("files" , files)
 
-        // Upload images to Cloudinary concurrently
+        // Upload images to Cloudinary concurrently 
         const uploadImagePromises = (files || []).map(file => 
             new Promise((resolve, reject) => {
                 cloudinary.uploader
@@ -113,6 +114,7 @@ exports.deleteProdut = async ( req) =>{
 
 async function parseAndValidateProductDetails(
   reqBody,
+  images,
   existingProduct = {},
   onValidationCompleted = async (updatedFiled) => {}
 ) {
@@ -135,10 +137,11 @@ async function parseAndValidateProductDetails(
   )
     throw new ValidationError(ValidationMsgs.DescEmpty);
   try {
+    console.log(images)
     let productDetails = reqBody[TableFields.productDetails] || {};
     let response = await onValidationCompleted({
       [TableFields.name_]: reqBody[TableFields.name_],
-      [TableFields.images]:reqBody[TableFields.images] || [
+      [TableFields.images]:images || [
         "https://res.cloudinary.com/dzc2ezwep/image/upload/v1757398961/products/bycjxfutvcqoy2jglu0w.jpg",
         "https://res.cloudinary.com/dzc2ezwep/image/upload/v1757398963/products/lmi9i9kk6ump9fo5cy8n.jpg",
       ],
